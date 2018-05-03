@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+
   def index
   end
 
@@ -30,13 +31,16 @@ class CustomersController < ApplicationController
 
 
   def show
-    @customer = Customer.find(params[:id])
   end
 
   def destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to customers_path
   end
 
   private
+
     def customer_params
       params.require(:customer).permit(:family_name,:given_name,:email)
     end
